@@ -26,4 +26,4 @@ jobs:
                 REPO: self
                 BRANCH: main
                 FOLDER: dist
-        GITHUB_TOKEN: ${{ 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 }}
+        
