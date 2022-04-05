@@ -5,9 +5,9 @@ name: Code change
 
 on:
   push:
-    branches:  main 
+    branches:  dev 
   pull_request:
-    branches:  main 
+    branches:  dev 
 
 jobs:
   build:
@@ -26,6 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: npm install
     - run: npm run build 
-    - run: npm test
+    
