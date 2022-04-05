@@ -9,8 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET_NAME: your-bucket-name
-      AWS_CF_DISTRIBUTION_ID: your-cloudfront-id
+      AWS_S3_BUCKET_NAME: demo4-git
+      AWS_CF_DISTRIBUTION_ID: E3EEPHCYI3K0D8
     strategy:
       matrix:
         node-version: [10.x]
