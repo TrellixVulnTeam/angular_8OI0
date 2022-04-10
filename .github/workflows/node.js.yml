@@ -8,9 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      AWS_S3_BUCKET_NAME: demo4-git
-      AWS_CF_DISTRIBUTION_ID: E3EEPHCYI3K0D8
+  
     strategy:
       matrix:
         node-version: [16.x]
@@ -29,16 +27,9 @@ jobs:
         with:
           args: --follow-symlinks --delete --cache-control max-age=2592000
         env:
-          AWS_S3_BUCKET: ${{ env.AWS_S3_BUCKET_NAME }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-2'
           SOURCE_DIR: 'dist'
-      - name: Create CloudFront Cache Invalidation
-        uses: chetan/invalidate-cloudfront-action@master
-        env:
-          DISTRIBUTION: ${{ env.AWS_CF_DISTRIBUTION_ID }}
-          PATHS: '/*'
-          AWS_REGION: 'us-east-2'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
